@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Todo</title>
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="{% static 'css/index.css' %}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" />
     <link rel="stylesheet"
@@ -26,7 +26,7 @@
                 <div class="heads">
                     <!-- <div class="ancaa" title=""><i class="fa-solid fa-user"></i> </div> -->
                     <div class="heading">Get Things Done? </div>
-                    <div class="anca"><a href="" class="sign"><i
+                    <div class="anca"><a href="{% url 'logout' %}" class="sign"><i
                                 class="fa-solid fa-right-from-bracket"></i></a></div>
                 </div>
 <br>
@@ -42,7 +42,7 @@
                 </form>
 
                 {% for todo in res %}
-                <div class="Todo clickable-div {% if todo.status %}todo-green{% else %}todo-red{% endif %}">
+                <div class="Todo clickable-div">
                     <form method="post" action="">
                         {% csrf_token %}
 
@@ -51,18 +51,13 @@
 
                     <p class="{% if todo.status %} completed {% endif %} ">{{todo.title}}</p>
 
-
-
-
                     <div>
-                        <a href=" /edit_todo/{{todo.srno}} "><i class="fa-solid fa-pen-to-square"></i></a>
+                        <a href=" /update_todo/{{todo.srno}} "><i class="fa-solid fa-pen-to-square"></i></a>
                         <a href=" /delete_todo/{{todo.srno}} "><i class="fa-solid fa-trash"></i></a>
 
                         </i>
                     </div>
                 </div>
-
-
                 {% endfor %}
             </div>
 
